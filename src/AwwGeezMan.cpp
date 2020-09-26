@@ -21,6 +21,9 @@ exists a Morty who says everything backwards.
 
 // Include the Morty header file
 #include "Morty.hpp"
+#include <iostream>
+#include <string>
+#include <string.h>
 
 
 int main (int ac, char** av) {
@@ -28,6 +31,7 @@ int main (int ac, char** av) {
 	// ./AwwGeezMan {start} {stop} {dimension}
 	// or 
 	// ./AwwGeezMan {start} {stop} {step} {dimension}
+	
 	if (ac != 4 and ac != 5) {
 		std::cout << "Error: Command line arguments are incorrect. Call program as (1) or (2)" 
 			<< std::endl;
@@ -36,6 +40,35 @@ int main (int ac, char** av) {
 		
 		return -1;
 	}
+
+	interdimensional::args iAmTired = interdimensional::parseArgs(ac, av);
+
+	if (ac == 4) {
+
+		if (iAmTired.dim == (interdimensional::dimension)0) {
+			C137::Morty(iAmTired.start, iAmTired.stop);
+		}
+		else if (iAmTired.dim == (interdimensional::dimension)1) {
+			Z286::Morty(iAmTired.start, iAmTired.stop);
+		}
+		else{
+			std::cout << "ERROR: Unknown dimension!!";
+		}
+	}
+	else {
+
+
+		if (iAmTired.dim == (interdimensional::dimension)0) {
+			C137::Morty(iAmTired.start, iAmTired.stop, iAmTired.step);
+		}
+		else if (iAmTired.dim == (interdimensional::dimension)1) {
+			Z286::Morty(iAmTired.start, iAmTired.stop, iAmTired.step);
+		}
+		else {
+			std::cout << "ERROR: Unknown dimension!!";
+		}
+	}
+	
 	
 	// Parse the command line arguments
 	
